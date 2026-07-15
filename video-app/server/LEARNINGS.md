@@ -27,7 +27,5 @@ This is generates `tsconfig.json` file and typescript configs in it. we can conf
   },
 ```
 
-Now you see changes and test **build** and **dev** cmd, it will work.
-
 > [!TIP]  
 > Now you see changes and test build and dev cmd, it will work.
