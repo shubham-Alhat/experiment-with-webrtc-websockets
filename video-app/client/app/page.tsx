@@ -1,11 +1,16 @@
-import Image from "next/image";
-
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 export default function Home() {
+  const [name, setName] = useState("");
+  const router = useRouter();
   return (
     <>
-      <div className="bg-red-500 text-3xl text-blue-500 font-bold">
-        shubham Alhat
-      </div>
+      <div className="text-amber-50 font-bold">Omegle clone</div>
+      <input type="text" onChange={(e) => setName(e.target.value)} />
+      <button onClick={() => router.push(`/room?name=${name}`)}>
+        Join Room
+      </button>
     </>
   );
 }
