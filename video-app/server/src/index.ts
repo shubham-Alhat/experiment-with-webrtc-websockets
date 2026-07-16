@@ -1,3 +1,1 @@
-console.log("shubham Alhat");
-
-console.log("hello world");
+import app from "./app.js";
