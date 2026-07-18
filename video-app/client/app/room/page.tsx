@@ -5,8 +5,11 @@ export default function Room() {
   const name = searchParams.get("name");
   return (
     <>
-      <div className="bg-black text-3xl text-shadow-amber-100">Room</div>
-      <div>hii {name}</div>
+      <div className="w-full min-h-screen bg-black">
+        <div className="w-full">
+          <h1 className="m-3 text-xl">Recording stream</h1>
+        </div>
+      </div>
     </>
   );
 }
