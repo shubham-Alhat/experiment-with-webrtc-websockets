@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const [name, setName] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const router = useRouter();
 
   const init = async () => {
@@ -18,6 +19,21 @@ export default function Home() {
         videoRef.current.srcObject = stream;
       } else {
         console.log("video ref not available");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const startAudioStream = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: false,
+      });
+      console.log(stream);
+      if (audioRef.current) {
+        audioRef.current.srcObject = stream;
       }
     } catch (error) {
       console.log(error);
@@ -70,6 +86,17 @@ export default function Home() {
       </div>
       <button onClick={init} className="bg-blue-600 text-center">
         Join Room
+      </button>
+      <br className="bg-red-500 p-2 w-2 " />
+      <hr className="bg-red-500 p-2 w-full " />
+      <div className="w-full flex justify-center items-center">
+        <audio className="m-5" ref={audioRef} controls autoPlay></audio>
+      </div>
+      <button
+        onClick={startAudioStream}
+        className="bg-blue-600 text-center cursor-pointer"
+      >
+        Audio stream
       </button>
     </>
   );
