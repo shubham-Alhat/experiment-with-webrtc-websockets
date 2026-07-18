@@ -1,6 +1,7 @@
 "use client";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { clonePageVaryPathWithNewSearchParams } from "next/dist/client/components/segment-cache/vary-path";
 export default function Home() {
   const [name, setName] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -23,6 +24,19 @@ export default function Home() {
     }
   };
 
+  const handleChangeFilter = (e: ChangeEvent<HTMLSelectElement>) => {
+    if (!videoRef.current) {
+      console.log("video ref not found..");
+      return;
+    }
+
+    console.log(e.target.value);
+    videoRef.current.classList.remove("invert", "grayscale", "blur-md");
+    if (e.target.value === "INVERT") videoRef.current.classList.add("invert");
+    if (e.target.value === "GREY") videoRef.current.classList.add("grayscale");
+    if (e.target.value === "BLUR") videoRef.current.classList.add("blur-md");
+  };
+
   return (
     <>
       <div className="text-amber-50 font-bold">Omegle clone</div>
@@ -35,6 +49,24 @@ export default function Home() {
           playsInline
           muted
         ></video>
+
+        <form className="max-w-sm mx-auto">
+          <label className="block mb-2.5 text-sm font-medium text-heading">
+            Select filter
+          </label>
+          <select
+            onChange={handleChangeFilter}
+            id="filters"
+            className="block w-full px-3 py-2.5 bg-black border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+          >
+            <option selected value="NONE">
+              None
+            </option>
+            <option value="INVERT">Invert</option>
+            <option value="GREY">Grey-scale</option>
+            <option value="BLUR">Blur</option>
+          </select>
+        </form>
       </div>
       <button onClick={init} className="bg-blue-600 text-center">
         Join Room
