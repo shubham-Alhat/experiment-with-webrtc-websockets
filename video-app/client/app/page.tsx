@@ -1,7 +1,7 @@
 "use client";
 import { ChangeEvent, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { clonePageVaryPathWithNewSearchParams } from "next/dist/client/components/segment-cache/vary-path";
+
 export default function Home() {
   const [name, setName] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
