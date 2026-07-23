@@ -56,8 +56,8 @@ export default function Home() {
   return (
     <>
       <div className="text-amber-50 font-bold">Omegle clone</div>
-      <input type="text" onChange={(e) => setName(e.target.value)} />
-      <div className="w-full">
+
+      <div>
         <video
           ref={videoRef}
           className="h-[500px] w-[500px] rounded-lg"
@@ -65,39 +65,12 @@ export default function Home() {
           playsInline
           muted
         ></video>
-
-        <form className="max-w-sm mx-auto">
-          <label className="block mb-2.5 text-sm font-medium text-heading">
-            Select filter
-          </label>
-          <select
-            onChange={handleChangeFilter}
-            id="filters"
-            className="block w-full px-3 py-2.5 bg-black border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
-          >
-            <option selected value="NONE">
-              None
-            </option>
-            <option value="INVERT">Invert</option>
-            <option value="GREY">Grey-scale</option>
-            <option value="BLUR">Blur</option>
-          </select>
-        </form>
       </div>
-      <button onClick={init} className="bg-blue-600 text-center">
-        Join Room
-      </button>
-      <br className="bg-red-500 p-2 w-2 " />
-      <hr className="bg-red-500 p-2 w-full " />
-      <div className="w-full flex justify-center items-center">
-        <audio className="m-5" ref={audioRef} controls autoPlay></audio>
+      <div>
+        <button onClick={init} className="bg-blue-800 w-[50px] cursor-pointer">
+          join
+        </button>
       </div>
-      <button
-        onClick={startAudioStream}
-        className="bg-blue-600 text-center cursor-pointer"
-      >
-        Audio stream
-      </button>
     </>
   );
 }
